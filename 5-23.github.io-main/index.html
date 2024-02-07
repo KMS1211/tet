@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="fullpage.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fullpage.min.css">
+</head>
+<body align="center">
+    
+    <div id="fullpage">
+        <div class="section">
+            <div id="hello" style="font-size: 30px;font-weight: 900;"></div>
+            <img id="arrow" src="img/arrow.svg"/>
+        </div>
+        
+        <div class="section">
+            <h1>좋아하는 언어</h1>
+            <article id="fav-lang">
+                <section>
+                    <img src="img/js.png" alt="Rust">
+                    <div style="--c: #2e302c">3</div>
+                </section>
+                <section id="one">
+                    <img src="img/python.png" alt="Rust">
+                    <div style="--c: #3474a4">1</div>
+                </section>
+                <section>
+                    <img src="C:\Users\rnjsa\Downloads\DDDD.png" alt="Rust">
+                    <div style="--c: #f74c00">2</div>
+                </section>
+            </article>
+        </div>
+        
+        <div class="section">
+            <h1>취미생활</h1>
+            <article id="doing">
+
+                <section>💻 Coding</section>
+                <section>🎮 Game</section>
+                <section>🚲 Bicycle Riding</section>
+                <section>🎬 Movie</section>
+            </article>
+
+        </div>
+
+
+        <div class="section">
+            <article id="sns">
+                <a id="gitub" target="_blank" href="https://github.com/KMS1211" style="--c: #24292f">
+                    <img src="img/github.svg"> <b>github</b>
+                </a>
+
+                <a id="discord" target="_blank" href="https://discord.com/" style="--c: #5865f2">
+                    <img src="img/discord.svg"> <b>discord</b>
+                </a>
+
+                <a id="instagram" target="_blank" href="https://www.instagram.com/__kms1211__/" style="--c: #ec4a66">
+                    <img src="img/instagram.svg"> <b>instagram</b>
+                </a>
+            </article>
+        </div>
+    </div>
+</body> 
+</html>
+
+
+
+
+<script>
+    a = "👋 안녕하세요! 학생 프로그래머 권민수입니다."
+    for (let i = 0; i< a.length; i++){
+        setTimeout(() => {
+            document.getElementById("hello").innerHTML += a[i]
+        }, 150*i)
+    }
+    setTimeout(() => {
+            document.getElementById("arrow").style.opacity = "1"
+        }, 3000)
+    new fullpage("#fullpage", {
+        autoScrolling: true,
+        scrollHorizontally: true,
+        scrollingSpeed: 500,
+        // sectionsColor: ['#fff', '#f0ffff', '#fffff0'],
+        loopHorizontal: true,
+        onLeave: (before, after) => {
+            document.querySelectorAll("#sns > a").forEach((e) => {
+                e.style.opacity = "0"
+            })
+            document.querySelectorAll("#doing > section").forEach((e) => {
+                e.style.opacity = "0"
+                e.style.transform = "translateY(-10px)"
+            })
+
+
+
+            if (after.index == 2) {
+                i = 0.5
+                document.querySelectorAll("#doing > section").forEach((e) => {
+                    setTimeout(() => {
+                        console.log(e)
+                        e.style.opacity = "1"
+                        e.style.transform = "translateY(0)"
+                    }, 500*(i+=0.5))
+                })
+            }
+
+            if (after.index == 3) {
+                i = 0.5
+                document.querySelectorAll("#sns > a").forEach((e) => {
+                    setTimeout(() => {
+                        e.style.opacity = "1"
+                    }, 500*(i+=0.5))
+                })
+            }
+        }
+    });
+
+    // 수정된 코드 시작
+    setTimeout(() => {
+        document.getElementById("hello").innerHTML += "<br><br>";
+        const text = "저에 대해 궁금하시다면 아래로 스크롤 해주세요.";
+        text.split('').forEach((char, index) => {
+            setTimeout(() => {  
+                document.getElementById("hello").innerHTML += char;
+            }, 150 * index)
+        });
+    }, 150 * a.length + 100);
+
+</script>
+
